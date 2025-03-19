@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   url :{},
   geners: {},
+  totalPages:"",
 }
 
 export const homeSlice = createSlice({
@@ -10,7 +11,8 @@ export const homeSlice = createSlice({
   initialState,
   reducers: {
    getApiConfigurations:(state, action) => {
-     state.url = action.payload;
+     state.url = action.payload.results;
+     state.totalPages = action.payload.total_pages;
    },
    getGeners:(state, action) => {
     state.geners = action.payload;

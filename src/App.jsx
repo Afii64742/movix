@@ -6,9 +6,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getApiConfigurations } from './store/homeSlice.js'
 function App() {
   const dispatch = useDispatch();
+  const {totalPages} = useSelector((state) => state.home)
+  
 useEffect(() => {
   fetchDataFromAPI("/movie/popular").then((data) => {
-    dispatch(getApiConfigurations(data.results))
+    dispatch(getApiConfigurations(data))
     console.log(data)
   }).catch((err) => {
     console.error(err)
@@ -16,7 +18,7 @@ useEffect(() => {
 }, [])
   return (
     <>
-    <h1>App</h1>
+  <h1>{totalPages || "Not Available"}</h1>
     </>
   )
 }
